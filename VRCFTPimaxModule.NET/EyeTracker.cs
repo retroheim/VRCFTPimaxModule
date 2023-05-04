@@ -1,14 +1,12 @@
 ﻿// Cheers Guppy or NGenesis or whoever originally made this
 
-using System;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using VRCFaceTracking;
 
 namespace VRCFTPimaxModule
 {
-	public enum CallbackType
+    public enum CallbackType
 	{
 		Start,
 		Stop,
@@ -115,14 +113,15 @@ namespace VRCFTPimaxModule
 		public EyeTracker()
 		{
 			// Extract the Embedded DLL
-			var dirName = Path.Combine(Utils.PersistentDataDirectory, "CustomLibs");
+			var dirName = Path.Combine(Utils.PersistentDataDirectory, "CustomLibs\\PimaxDeps");
 			if (!Directory.Exists(dirName))
 				Directory.CreateDirectory(dirName);
 
 			var dllPath = Path.Combine(dirName, "PimaxEyeTracker.dll");
 
+			// TODO embed this in this assembly
 			using (var stm = Assembly.GetExecutingAssembly()
-				       .GetManifestResourceStream("VRCFTPimaxModule.PimaxEyeTracker.dll"))
+				       .GetManifestResourceStream("PimaxEyeTracker.dll"))
 			{
 				try
 				{

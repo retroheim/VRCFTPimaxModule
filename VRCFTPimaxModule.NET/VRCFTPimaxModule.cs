@@ -1,15 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
 using System.Text.Json;
 using VRCFaceTracking;
 using VRCFaceTracking.Core.Library;
-using VRCFaceTracking.Core.Params.Data;
 
 namespace VRCFTPimaxModule
 {
-	public class VRCFTPimaxModule : ExtTrackingModule
+    public class VRCFTPimaxModule : ExtTrackingModule
 	{
 		private readonly EyeTracker _eyeTracker = new EyeTracker();
 		
@@ -43,15 +39,17 @@ namespace VRCFTPimaxModule
 		
 		public VRCFTPimaxModule()
 		{
+			// TODO expose this to VRCFT 5
+
 			// Get location of currently executing assembly, then create or open the config file
 			var configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VRCFTPimaxModule.json");
 			
 			// If the config file doesn't exist, create it with default values
 			if (!File.Exists(configPath))
 				File.WriteAllText(configPath, JsonSerializer.Serialize(_config, new JsonSerializerOptions { WriteIndented = true }));
-				
-				// Now open the config file and read the values
-			var config = File.ReadAllText(configPath);
+
+            // Now open the config file and read the values
+            var config = File.ReadAllText(configPath);
 			JsonSerializer.Deserialize<Config>(config);
 			
 
@@ -71,16 +69,15 @@ namespace VRCFTPimaxModule
                     new EyeTrackerEventHandler(UpdateValues));
 
             List<Stream> streams = new List<Stream>();
-            // TODO Add image to supported streams if we get one
-            //if (success)
-            //{
-            //	Assembly a = Assembly.GetExecutingAssembly();
-            //	var hmdStream = a.GetManifestResourceStream							
-            //		("PimaxExtTrackingModule.Assets.DroolonPiOne.png");
-            //  streams.Add(hmdStream);
-            //}
+			if (success)
+			{
+				Assembly a = Assembly.GetExecutingAssembly();
+				var hmdStream = a.GetManifestResourceStream
+					("DroolonPiOne.png");
+				streams.Add(hmdStream);
+			}
 
-            ModuleInformation = new ModuleMetadata()
+			ModuleInformation = new ModuleMetadata()
             {
                 Name = "VIVE SRanipal"
             };
