@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule", "VRCFTPimaxModule\VRCFTPimaxModule.csproj", "{A100736C-A19E-498E-82E1-5ED1C1B887BA}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule", "VRCFTPimaxModule\VRCFTPimaxModule.csproj", "{2E6C534E-4FF1-4087-A835-06014B9144DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A100736C-A19E-498E-82E1-5ED1C1B887BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A100736C-A19E-498E-82E1-5ED1C1B887BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A100736C-A19E-498E-82E1-5ED1C1B887BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A100736C-A19E-498E-82E1-5ED1C1B887BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
