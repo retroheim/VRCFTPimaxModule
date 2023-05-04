@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule", "VRCFTPimaxModule\VRCFTPimaxModule.csproj", "{2E6C534E-4FF1-4087-A835-06014B9144DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule.NET", "VRCFTPimaxModule.NET\VRCFTPimaxModule.NET.csproj", "{47AD872B-AF0D-4F9D-94EC-8F3157A57841}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5717C151-B05F-436A-B08A-BD192AE8DAC9}
 	EndGlobalSection
 EndGlobal
