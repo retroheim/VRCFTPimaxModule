@@ -115,7 +115,7 @@ namespace VRCFTPimaxModule
 		public EyeTracker()
 		{
 			// Extract the Embedded DLL
-			var dirName = Path.Combine(Utils.PersistentDataDirectory, "CustomLibs\\PimaxDeps");
+			var dirName = Path.Combine(Utils.PersistentDataDirectory, "CustomLibs");
 			if (!Directory.Exists(dirName))
 				Directory.CreateDirectory(dirName);
 
