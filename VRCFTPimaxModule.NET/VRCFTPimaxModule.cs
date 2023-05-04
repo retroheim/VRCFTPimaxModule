@@ -69,6 +69,23 @@ namespace VRCFTPimaxModule
             _eyeTracker.OnUpdate =
                 (EyeTrackerEventHandler)Delegate.Combine(_eyeTracker.OnUpdate,
                     new EyeTrackerEventHandler(UpdateValues));
+
+            List<Stream> streams = new List<Stream>();
+            // TODO Add image to supported streams if we get one
+            //if (success)
+            //{
+            //	Assembly a = Assembly.GetExecutingAssembly();
+            //	var hmdStream = a.GetManifestResourceStream							
+            //		("PimaxExtTrackingModule.Assets.DroolonPiOne.png");
+            //  streams.Add(hmdStream);
+            //}
+
+            ModuleInformation = new ModuleMetadata()
+            {
+                Name = "VIVE SRanipal"
+            };
+            ModuleInformation.StaticImages = streams;
+
             return (success, false);
         }
 
