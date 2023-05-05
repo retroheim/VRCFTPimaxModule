@@ -1,4 +1,4 @@
-﻿using VRCFaceTracking.Params;
+﻿using VRCFaceTracking.Core.Types;
 
 namespace VRCFTPimaxModule
 {

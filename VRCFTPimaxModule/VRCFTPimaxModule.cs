@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json;
 using VRCFaceTracking;
+using VRCFaceTracking.Core.Library;
 
 namespace VRCFTPimaxModule
 {
-	public class VRCFTPimaxModule : ExtTrackingModule
+    public class VRCFTPimaxModule : ExtTrackingModule
 	{
 		private readonly EyeTracker _eyeTracker = new EyeTracker();
 		
@@ -40,38 +39,55 @@ namespace VRCFTPimaxModule
 		
 		public VRCFTPimaxModule()
 		{
+			// TODO expose this to VRCFT 5
+
 			// Get location of currently executing assembly, then create or open the config file
 			var configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VRCFTPimaxModule.json");
 			
 			// If the config file doesn't exist, create it with default values
 			if (!File.Exists(configPath))
 				File.WriteAllText(configPath, JsonSerializer.Serialize(_config, new JsonSerializerOptions { WriteIndented = true }));
-				
-				// Now open the config file and read the values
-			var config = File.ReadAllText(configPath);
+
+            // Now open the config file and read the values
+            var config = File.ReadAllText(configPath);
 			JsonSerializer.Deserialize<Config>(config);
-			
 
 			_movingAverageLeftX = new SimpleMovingAverage(_config.AverageSteps);
 			_movingAverageLeftY = new SimpleMovingAverage(_config.AverageSteps);
 			_movingAverageRightX = new SimpleMovingAverage(_config.AverageSteps);
 			_movingAverageRightY = new SimpleMovingAverage(_config.AverageSteps);
 		}
-		
-		public override (bool SupportsEye, bool SupportsLip) Supported => (true, false);
 
-		public override (bool eyeSuccess, bool lipSuccess) Initialize(bool eye, bool lip)
-		{
-			bool success = _eyeTracker.Start();
-			_eyeTracker.OnUpdate =
-				(EyeTrackerEventHandler)Delegate.Combine(_eyeTracker.OnUpdate,
-					new EyeTrackerEventHandler(UpdateValues));
-			return (success, false);
-		}
+        public override (bool SupportsEye, bool SupportsExpression) Supported => (true, false);
 
-		public void UpdateValues()
+        public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
+        {
+            bool success = _eyeTracker.Start();
+            _eyeTracker.OnUpdate =
+                (EyeTrackerEventHandler)Delegate.Combine(_eyeTracker.OnUpdate,
+                    new EyeTrackerEventHandler(UpdateValues));
+
+            List<Stream> streams = new List<Stream>();
+			if (success)
+			{
+				Assembly a = Assembly.GetExecutingAssembly();
+				var hmdStream = a.GetManifestResourceStream
+					("VRCFTPimaxModule.Assets.DroolonPiOne.png");
+				streams.Add(hmdStream);
+			}
+
+			ModuleInformation = new ModuleMetadata()
+            {
+                Name = "Droolon Pi 1"
+            };
+            ModuleInformation.StaticImages = streams;
+
+            return (success, false);
+        }
+
+        public void UpdateValues()
 		{
-			if (Status.EyeState != ModuleState.Active)
+			if (Status != ModuleState.Active)
 				return;
 			
 			float pupilCenterLeftX = _eyeTracker.GetEyeParameter(_eyeTracker.LeftEye.Eye, EyeParameter.PupilCenterX);
@@ -201,8 +217,8 @@ namespace VRCFTPimaxModule
 				_blinkTimerRight = 0;
 			}
 
-			UnifiedTrackingData.LatestEyeData.Left.Openness = num;
-			UnifiedTrackingData.LatestEyeData.Right.Openness = num2;
+            UnifiedTracking.Data.Eye.Left.Openness = num;
+            UnifiedTracking.Data.Eye.Right.Openness = num2;
 
 			pupilCenterLeftX *= _config.MovementMultiplierX;
 			pupilCenterLeftY *= _config.MovementMultiplierY;
@@ -219,12 +235,12 @@ namespace VRCFTPimaxModule
 			pupilCenterLeftY = NormalizeFloatAroundZero(pupilCenterLeftY, _config.YLeftRange);
 			pupilCenterRightY = NormalizeFloatAroundZero(pupilCenterRightY, _config.YRightRange);
 
-			UnifiedTrackingData.LatestEyeData.Left.Look.x = pupilCenterLeftX;
-			UnifiedTrackingData.LatestEyeData.Right.Look.x = pupilCenterRightX;
+			UnifiedTracking.Data.Eye.Left.Gaze.x = pupilCenterLeftX;
+			UnifiedTracking.Data.Eye.Right.Gaze.x = pupilCenterRightX;
 			
 			float y = 0f - (pupilCenterLeftY + pupilCenterRightY / 2f);
-			UnifiedTrackingData.LatestEyeData.Left.Look.y = y;
-			UnifiedTrackingData.LatestEyeData.Right.Look.y = y;
+			UnifiedTracking.Data.Eye.Left.Gaze.y = y;
+			UnifiedTracking.Data.Eye.Right.Gaze.y = y;
 		}
 		
 		private static float NormalizeFloatAroundZero(float input, MinMaxRange inputRange)
@@ -233,15 +249,11 @@ namespace VRCFTPimaxModule
 			return -1f + num * (input - inputRange.Min);
 		}
 
-		public override Action GetUpdateThreadFunc()
-		{
-			// Return a null action as we're not using a thread
-			return () => { };
-		}
-
 		public override void Teardown()
 		{
 			_eyeTracker.Stop();
 		}
-	}
+
+        public override void Update() { }
+    }
 }
