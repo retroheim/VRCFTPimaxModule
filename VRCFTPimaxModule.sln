@@ -3,24 +3,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule", "VRCFTPimaxModule\VRCFTPimaxModule.csproj", "{2E6C534E-4FF1-4087-A835-06014B9144DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRCFaceTracking", "..\..\VRCFT\VRCFaceTracking\VRCFaceTracking.csproj", "{F8F13EE6-CEF5-4B14-984D-B6127B80A968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRCFTPimaxModule.NET", "VRCFTPimaxModule.NET\VRCFTPimaxModule.NET.csproj", "{47AD872B-AF0D-4F9D-94EC-8F3157A57841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRCFaceTracking.Core", "..\..\VRCFT\VRCFaceTracking.Core\VRCFaceTracking.Core.csproj", "{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRCFTPimaxModule", "VRCFTPimaxModule\VRCFTPimaxModule.csproj", "{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E6C534E-4FF1-4087-A835-06014B9144DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47AD872B-AF0D-4F9D-94EC-8F3157A57841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Debug|Any CPU.Build.0 = Debug|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Debug|x64.ActiveCfg = Debug|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Debug|x64.Build.0 = Debug|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Release|Any CPU.ActiveCfg = Release|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Release|Any CPU.Build.0 = Release|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Release|x64.ActiveCfg = Release|x64
+		{F8F13EE6-CEF5-4B14-984D-B6127B80A968}.Release|x64.Build.0 = Release|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Debug|Any CPU.Build.0 = Debug|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Debug|x64.ActiveCfg = Debug|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Debug|x64.Build.0 = Debug|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Release|Any CPU.ActiveCfg = Release|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Release|Any CPU.Build.0 = Release|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Release|x64.ActiveCfg = Release|x64
+		{6B1C50DA-CB26-4D80-8CC4-C0A1AD909AEB}.Release|x64.Build.0 = Release|x64
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Debug|x64.Build.0 = Debug|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Release|x64.ActiveCfg = Release|Any CPU
+		{DFA3B8AF-72F4-45A2-8EE0-4FA2E2F2905E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

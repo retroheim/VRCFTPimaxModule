@@ -1,14 +1,13 @@
 ﻿// Cheers Guppy or NGenesis or whoever originally made this
 
-using System;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using VRCFaceTracking;
+using VRCFaceTracking.Core.Library;
 
 namespace VRCFTPimaxModule
 {
-	public enum CallbackType
+    public enum CallbackType
 	{
 		Start,
 		Stop,
@@ -121,8 +120,9 @@ namespace VRCFTPimaxModule
 
 			var dllPath = Path.Combine(dirName, "PimaxEyeTracker.dll");
 
+			// TODO embed this in this assembly
 			using (var stm = Assembly.GetExecutingAssembly()
-				       .GetManifestResourceStream("VRCFTPimaxModule.PimaxEyeTracker.dll"))
+				       .GetManifestResourceStream("VRCFTPimaxModule.Assets.PimaxEyeTracker.dll"))
 			{
 				try
 				{
@@ -145,7 +145,7 @@ namespace VRCFTPimaxModule
 				}
 				catch (Exception e)
 				{
-					Logger.Error("Failed to get DLL: " + e.Message);
+					// Logger.Error("Failed to get DLL: " + e.Message);
 				}
 			}
 		}

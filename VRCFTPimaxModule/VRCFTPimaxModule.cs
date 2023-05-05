@@ -1,15 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
 using System.Text.Json;
 using VRCFaceTracking;
 using VRCFaceTracking.Core.Library;
-using VRCFaceTracking.Core.Params.Data;
 
 namespace VRCFTPimaxModule
 {
-	public class VRCFTPimaxModule : ExtTrackingModule
+    public class VRCFTPimaxModule : ExtTrackingModule
 	{
 		private readonly EyeTracker _eyeTracker = new EyeTracker();
 		
@@ -43,17 +39,18 @@ namespace VRCFTPimaxModule
 		
 		public VRCFTPimaxModule()
 		{
+			// TODO expose this to VRCFT 5
+
 			// Get location of currently executing assembly, then create or open the config file
 			var configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "VRCFTPimaxModule.json");
 			
 			// If the config file doesn't exist, create it with default values
 			if (!File.Exists(configPath))
 				File.WriteAllText(configPath, JsonSerializer.Serialize(_config, new JsonSerializerOptions { WriteIndented = true }));
-				
-				// Now open the config file and read the values
-			var config = File.ReadAllText(configPath);
+
+            // Now open the config file and read the values
+            var config = File.ReadAllText(configPath);
 			JsonSerializer.Deserialize<Config>(config);
-			
 
 			_movingAverageLeftX = new SimpleMovingAverage(_config.AverageSteps);
 			_movingAverageLeftY = new SimpleMovingAverage(_config.AverageSteps);
@@ -61,7 +58,7 @@ namespace VRCFTPimaxModule
 			_movingAverageRightY = new SimpleMovingAverage(_config.AverageSteps);
 		}
 
-        public override (bool SupportsEye, bool SupportsExpression) Supported => (false, false);
+        public override (bool SupportsEye, bool SupportsExpression) Supported => (true, false);
 
         public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
         {
@@ -69,6 +66,22 @@ namespace VRCFTPimaxModule
             _eyeTracker.OnUpdate =
                 (EyeTrackerEventHandler)Delegate.Combine(_eyeTracker.OnUpdate,
                     new EyeTrackerEventHandler(UpdateValues));
+
+            List<Stream> streams = new List<Stream>();
+			if (success)
+			{
+				Assembly a = Assembly.GetExecutingAssembly();
+				var hmdStream = a.GetManifestResourceStream
+					("VRCFTPimaxModule.Assets.DroolonPiOne.png");
+				streams.Add(hmdStream);
+			}
+
+			ModuleInformation = new ModuleMetadata()
+            {
+                Name = "Droolon Pi 1"
+            };
+            ModuleInformation.StaticImages = streams;
+
             return (success, false);
         }
 
@@ -241,9 +254,6 @@ namespace VRCFTPimaxModule
 			_eyeTracker.Stop();
 		}
 
-        public override void Update()
-        {
-            throw new NotImplementedException();
-        }
+        public override void Update() { }
     }
 }
