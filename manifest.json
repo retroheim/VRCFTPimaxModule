@@ -1,0 +1,16 @@
+{
+ "ModuleId": "f5d4316f-d743-4009-bc28-91d7c53b4e30",
+ "AuthorName": "dfgHiatus",
+ "DllFileName": "",
+ "Downloads": 0,
+ "DownloadUrl": "https://github.com/dfgHiatus/VRCFTPimaxModule/releases/download/v0.0.1/VRCFTPimaxModule.dll",
+ "LastUpdated": "2023-04-20T01:08:01Z",
+ "ModuleDescription": "Droolon Pi 1 eye tracking for VRCFaceTracking v5.",
+ "ModuleName": "VRCFT-Babble",
+ "ModulePageUrl": "https://github.com/dfgHiatus/VRCFTPimaxModule", 
+ "Rating": 0, 
+ "Ratings": 0,
+ "RatingSum": 0,
+ "UsageInstructions": "Prior to running this module, install ASeeVR with Guppy's fix, then with Pimax's software(s) open run VRCFaceTracking. Please refer to the discord for more information about Guppy's fix.",
+ "Version": "1.0" 
+}
