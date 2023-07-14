@@ -238,10 +238,10 @@ namespace VRCFTPimaxModule
 			UnifiedTracking.Data.Eye.Left.Gaze.x = pupilCenterLeftX;
 			UnifiedTracking.Data.Eye.Right.Gaze.x = pupilCenterRightX;
 			
-			float y = 0f - (pupilCenterLeftY + pupilCenterRightY / 2f);
+			float y = -0.6f - (pupilCenterLeftY + pupilCenterRightY / 2f);
 			UnifiedTracking.Data.Eye.Left.Gaze.y = y;
 			UnifiedTracking.Data.Eye.Right.Gaze.y = y;
-		}
+        }
 		
 		private static float NormalizeFloatAroundZero(float input, MinMaxRange inputRange)
 		{
